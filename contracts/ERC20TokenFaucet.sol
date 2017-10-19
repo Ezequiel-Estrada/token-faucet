@@ -4,10 +4,10 @@ pragma solidity ^0.4.15;
 
 contract ERC20TokenFaucet {
 
-    uint256 public totalSupply;           // Total amount of tokens
-    string public name;                   // Fancy name: eg Polymath
-    uint8 public decimals;                // How many decimals to show. ie. There could 1000 base units with 3 decimals. Meaning 0.980 POLY = 980 base units. It's like comparing 1 wei to 1 ether.
-    string public symbol;                 // An identifier: eg POLY
+    uint256 public totalSupply = 1000000;
+    string public name = 'Polymath Network';
+    uint8 public decimals = 18;
+    string public symbol = 'POLY';
 
     mapping (address => uint256) balances;
     mapping (address => mapping (address => uint256)) allowed;
@@ -16,19 +16,6 @@ contract ERC20TokenFaucet {
 
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
-
-    function Token(
-        uint256 _initialAmount,
-        string _tokenName,
-        uint8 _decimalUnits,
-        string _tokenSymbol
-      ) {
-        balances[msg.sender] = _initialAmount;               // Give the creator all initial tokens
-        totalSupply = _initialAmount;                        // Update total supply
-        name = _tokenName;                                   // Set the name for display purposes
-        decimals = _decimalUnits;                            // Amount of decimals for display purposes
-        symbol = _tokenSymbol;                               // Set the symbol for display purposes
-    }
 
     /* New token faucet - Not part of the ERC20 standard */
     function getTokens (uint256 _amount) {
